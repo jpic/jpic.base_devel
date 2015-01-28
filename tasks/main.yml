@@ -1,0 +1,7 @@
+---
+
+- shell: pacman -Qg base-devel | cut -d' ' -f2
+  register: base_devel_packages
+  changed_when: false
+
+- pacman: name={{ ','.join(base_devel_packages.stdout_lines) }}
